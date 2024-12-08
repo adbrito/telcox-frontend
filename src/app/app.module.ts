@@ -9,6 +9,7 @@ import { ConsumoComponent } from './consumo/consumo.component';
 import { ConsumoService } from './consumo.service'; // Si no está, también importa el servicio
 import { ChartsModule } from 'ng2-charts';
 import { NgChartsModule } from 'ng2-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 @NgModule({
@@ -20,8 +21,11 @@ import { NgChartsModule } from 'ng2-charts';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ChartsModule , // Añade ChartsModule aquí
-    NgChartsModule
+    NgxChartsModule,
+    ChartsModule,  // Usar ChartsModule aquí
+
+  //  ChartsModule , // Añade ChartsModule aquí
+  //  NgChartsModule
     // ConsumoModule,
    // RouterModule.forRoot([{ path: 'consumo', loadChildren: () => import('./consumo/consumo.module').then(m => m.ConsumoModule) }])  // Agrega rutas básicas si usas enrutamiento
   ],

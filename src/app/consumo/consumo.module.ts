@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ConsumoComponent } from './consumo.component';
-//import { ChartsModule } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 
 
 const routes: Routes = [
@@ -15,8 +15,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-  //  ChartsModule
-    //RouterModule.forChild(routes)
+    NgChartsModule    //RouterModule.forChild(routes)
   ],
   exports: [ConsumoComponent], // Exportar el componente
 

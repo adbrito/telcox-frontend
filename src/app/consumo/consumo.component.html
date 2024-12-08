@@ -1,21 +1,60 @@
 <div class="dashboard-container">
   <!-- Cabecera -->
-  <header class="header">
+  <header class="header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
     <img src="assets/logo.png" alt="Logo" class="logo" />
-    <div class="user-info">
-      <i class="fa fa-user"></i>
-      <span>Allison Brito</span>
-      <span class="user-id">(ID: 123456789)</span>
-      <!-- Número de cédula -->
+    <div class="user-info" style="display: flex; align-items: center;">
+      <i class="fa fa-user" style="margin-right: 10px;"></i>
+      <span style="font-weight: bold;">Allison Brito</span>
+      <span class="user-id" style="margin-left: 10px;">(ID: 123456789)</span>
+      <span style="margin-left: 20px; font-weight: bold;">Saldo Actual: $10</span> <!-- Saldo actual al lado del nombre -->
+      <span style="margin-left: 20px; font-weight: bold;">Fecha de Caducidad: 20/12/2024</span> <!-- Fecha de caducidad -->
     </div>
   </header>
 
-  <div *ngIf="cliente && cliente.length > 0; else errorTemplate">
-    <!-- Tabla con Bootstrap -->
+  <!-- Fila para los dos gráficos, la tarjeta y el título -->
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 20px;">
+    <!-- Título de la fila -->
+    <div style="flex: 1 100%; text-align: center; padding: 10px;">
+      <h4>Plan Actual - Amigo</h4>
+    </div>
+
+    <!-- Gráfico Megas Usados (Ajustar tamaño) -->
+    <div style="flex: 1 1 40%; padding: 10px; display: flex; justify-content: center;">
+      <canvas
+        baseChart
+        [data]="donutChartData"
+        [labels]="donutChartData.labels"
+        [options]="donutChartOptions"
+        [type]="donutChartType"
+      >
+      </canvas>
+    </div>
+
+    <!-- Gráfico Datos Usados (Ajustar tamaño) -->
+    <div style="flex: 1 1 40%; padding: 10px; display: flex; justify-content: center;">
+      <canvas
+        baseChart
+        [data]="donutChartDataMin"
+        [labels]="donutChartDataMin.labels"
+        [options]="donutChartOptionsMin"
+        [type]="donutChartType"
+      >
+      </canvas>
+    </div>
+  </div>
+
+  <!-- Título para la tabla -->
+  <div style="text-align: center; margin-top: 20px;">
+    <h3>Consumo Anterior</h3>
+  </div>
+
+  <!-- Tabla con Bootstrap (haciendo que sea responsive) -->
+  <div *ngIf="cliente && cliente.length > 0; else errorTemplate" style="overflow-x: auto;">
     <table class="table table-bordered table-hover table-striped shadow-lg">
       <thead class="table-purple">
         <tr>
           <th>Mes</th>
+          <th>Paquete</th>
           <th>Saldo</th>
           <th>Consumo de Datos (GB)</th>
           <th>Minutos Usados</th>
@@ -25,6 +64,7 @@
         <!-- Mostrar los registros desde el segundo en adelante -->
         <tr *ngFor="let c of cliente; let i = index" [hidden]="i === 0">
           <td>{{ c?.mes }}</td>
+          <td>Amigo</td>
           <td>{{ c?.saldo | currency }}</td>
           <td>{{ c?.dato_usado }} GB</td>
           <td>{{ c?.minuto_usado }} minutos</td>
@@ -32,11 +72,9 @@
       </tbody>
     </table>
   </div>
-
+  
   <!-- Mensaje de error -->
   <ng-template #errorTemplate>
     <p>Error al cargar los datos del cliente.</p>
   </ng-template>
 </div>
-
-<!-- Tabla responsive -->
