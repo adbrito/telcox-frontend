@@ -1,0 +1,87 @@
+ 
+
+/* Cabecera del Dashboard */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #3F1B6A;
+  color: white;
+}
+ 
+
+.logo {
+  max-width: 150px; /* Ajusta el tamaño del logo */
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info i {
+  margin-right: 10px;
+  font-size: 20px; /* Tamaño del ícono */
+}
+
+.user-info span {
+  margin-left: 5px;
+}
+
+.user-id {
+  font-size: 14px; /* Ajusta el tamaño del texto del ID */
+  color: #E0A800; /* Color gris para el ID */
+}
+
+
+/* Contenido principal (tabla) centrado */
+.dashboard-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 20px;
+}
+
+/* Colores personalizados */
+.table-purple {
+  background-color: #3F1B6A; /* Morado */
+  color: white; /* Texto blanco */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f8f9fa; /* Cuerpo de tabla blanco */
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* Hacer la tabla responsive */
+.table-responsive {
+  max-height: 400px; /* Ajustar la altura máxima de la tabla */
+  overflow-y: auto; /* Permitir desplazamiento vertical */
+}
+
+@media (max-width: 768px) {
+  .table-responsive {
+    max-height: 300px; /* Reducir altura en pantallas pequeñas */
+  }
+}
+
+
+
+
+
+
+.container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+h2 {
+  margin-bottom: 30px;
+}

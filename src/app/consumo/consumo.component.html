@@ -1,0 +1,42 @@
+<div class="dashboard-container">
+  <!-- Cabecera -->
+  <header class="header">
+    <img src="assets/logo.png" alt="Logo" class="logo" />
+    <div class="user-info">
+      <i class="fa fa-user"></i>
+      <span>Allison Brito</span>
+      <span class="user-id">(ID: 123456789)</span>
+      <!-- Número de cédula -->
+    </div>
+  </header>
+
+  <div *ngIf="cliente && cliente.length > 0; else errorTemplate">
+    <!-- Tabla con Bootstrap -->
+    <table class="table table-bordered table-hover table-striped shadow-lg">
+      <thead class="table-purple">
+        <tr>
+          <th>Mes</th>
+          <th>Saldo</th>
+          <th>Consumo de Datos (GB)</th>
+          <th>Minutos Usados</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Mostrar los registros desde el segundo en adelante -->
+        <tr *ngFor="let c of cliente; let i = index" [hidden]="i === 0">
+          <td>{{ c?.mes }}</td>
+          <td>{{ c?.saldo | currency }}</td>
+          <td>{{ c?.dato_usado }} GB</td>
+          <td>{{ c?.minuto_usado }} minutos</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Mensaje de error -->
+  <ng-template #errorTemplate>
+    <p>Error al cargar los datos del cliente.</p>
+  </ng-template>
+</div>
+
+<!-- Tabla responsive -->
